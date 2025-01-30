@@ -1,7 +1,6 @@
 package com.mygdx.game.Core;
 
-import World.IsometricTileMap;
-import World.Tile;
+import com.mygdx.game.World.IsometricTileMap;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -17,7 +16,6 @@ import com.mygdx.game.Entities.Player;
 //import com.mygdx.game.Entities.Player;
 
 import java.io.File;
-import java.io.FilenameFilter;
 
 public class Game extends ApplicationAdapter {
 	private AssetManager assetManager;
