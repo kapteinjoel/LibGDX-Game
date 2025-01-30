@@ -1,4 +1,4 @@
-package World;
+package com.mygdx.game.World;
 
 import com.badlogic.gdx.graphics.Texture;
 
