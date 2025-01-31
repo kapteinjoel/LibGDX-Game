@@ -1,29 +1,27 @@
 package com.mygdx.game.World;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Tile {
+    private float x, y;
+    private Texture texture;
 
-    public static final int TILE_WIDTH = 64;  // Width of the tile
-    public static final int TILE_HEIGHT = 32; // Height of the tile
-    private int x, y; // Tile coordinates in isometric space
-    private Texture texture; // Texture for the tile
-
-    public Tile(int x, int y, Texture texture) {
+    public Tile(float x, float y, Texture texture) {
         this.x = x;
         this.y = y;
         this.texture = texture;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public Texture getTexture() {
-        return texture;
+    public void render(SpriteBatch batch) {
+        batch.draw(texture, x, y);
     }
 }

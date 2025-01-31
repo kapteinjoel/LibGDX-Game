@@ -1,6 +1,5 @@
 package com.mygdx.game.Core;
 
-import com.mygdx.game.World.IsometricTileMap;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -13,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Menus.MainMenu;
 import com.mygdx.game.Entities.Player;
+import com.mygdx.game.World.TileMap;
 //import com.mygdx.game.Entities.Player;
 
 import java.io.File;
@@ -24,10 +24,12 @@ public class Game extends ApplicationAdapter {
 	private MainMenu mainMenu;
 
 	private OrthographicCamera camera;
-	private IsometricTileMap tileMap;
+
 	private Viewport viewport;
 
 	private Player player;
+
+	private TileMap tileMap; // Tile map object
 
 	public enum GameState {
 		MAIN_MENU,
@@ -62,11 +64,12 @@ public class Game extends ApplicationAdapter {
 
 		//Game Objects Below
 		player = new Player(100, 100);
+		tileMap = new TileMap(10000, 10000); // Create a tile map with 100x100 tiles
 	}
 
 	@Override
 	public void render() {
-		ScreenUtils.clear(0, 0, 0, 1);
+		ScreenUtils.clear(0, 0, 1, 1);
 		batch.begin();
 
 		mousePos = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
@@ -83,7 +86,11 @@ public class Game extends ApplicationAdapter {
 			case GAME_STATE:
 				float deltaTime = Gdx.graphics.getDeltaTime();
 				player.update(deltaTime);
+				camera.position.set(player.getPosition().x, player.getPosition().y, 0);
+				camera.update();
+				tileMap.renderVisibleTiles(camera, batch);
 				player.render(batch);
+
 				break;
 			case WORLD_CREATE:
 				break;

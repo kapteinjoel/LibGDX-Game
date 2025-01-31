@@ -19,4 +19,19 @@ public class InputHandler {
     public static boolean isMoveRightPressed() {
         return Gdx.input.isKeyPressed(Input.Keys.D);
     }
+    public static boolean isLeftMouseButtonPressed() {
+        return Gdx.input.isButtonPressed(Input.Buttons.LEFT);
+    }
+
+    public static boolean isRightMouseButtonPressed() {
+        return Gdx.input.isButtonPressed(Input.Buttons.RIGHT);
+    }
+
+    public static float getMouseX() {
+        return Gdx.input.getX();
+    }
+
+    public static float getMouseY() {
+        return Gdx.input.getY();
+    }
 }

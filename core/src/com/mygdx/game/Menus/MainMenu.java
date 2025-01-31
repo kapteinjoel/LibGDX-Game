@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.Core.Game;
+import com.mygdx.game.Core.InputHandler;
 import com.mygdx.game.Gui.Button;
 import com.mygdx.game.Core.AssetManagerSingleton;
 
@@ -42,7 +43,7 @@ public class MainMenu extends Menu {
     public void handleInput(Vector2 mousePos) {
         super.handleInput(mousePos);
         // Additional handling for when the single player button is clicked
-        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT) && singlePlayerButton.isClicked(mousePos)) {
+        if (InputHandler.isLeftMouseButtonPressed() && singlePlayerButton.isClicked(mousePos)) {
             // Handle the single player button action (e.g., navigate to the game screen)
             System.out.println("Single Player Button Clicked!");
             Game.changeState(Game.GameState.GAME_STATE);

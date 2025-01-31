@@ -14,7 +14,7 @@ public class Player {
 
     public Player(float x, float y) {
         position = new Vector2(x, y);
-        texture = new Texture("Player.png"); // Ensure you have a player sprite in assets!
+        texture = new Texture("branden.png"); // Ensure you have a player sprite in assets!
     }
 
     public void update(float deltaTime) {
@@ -38,7 +38,7 @@ public class Player {
         }
     }
     public void render(SpriteBatch batch) {
-        batch.draw(texture, position.x, position.y);
+        batch.draw(texture, position.x, position.y, 100, 100);
     }
 
     public void dispose() {
