@@ -38,7 +38,7 @@ public class Player {
         }
     }
     public void render(SpriteBatch batch) {
-        batch.draw(texture, position.x, position.y);
+        batch.draw(texture, position.x, position.y, 100, 100);
     }
 
     public void dispose() {
