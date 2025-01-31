@@ -22,13 +22,9 @@ public class Game extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Vector2 mousePos = new Vector2();
 	private MainMenu mainMenu;
-
 	private OrthographicCamera camera;
-
 	private Viewport viewport;
-
 	private Player player;
-
 	private TileMap tileMap; // Tile map object
 
 	public enum GameState {
@@ -62,14 +58,14 @@ public class Game extends ApplicationAdapter {
 		// Pass the camera and viewport to MainMenu
 		mainMenu = new MainMenu(viewport, camera);
 
-		//Game Objects Below
+		// Initialize game objects
 		player = new Player(100, 100);
-		tileMap = new TileMap(10000, 10000); // Create a tile map with 100x100 tiles
+		tileMap = new TileMap(10000, 10000); // Create a large tile map (e.g., 100x100 tiles)
 	}
 
 	@Override
 	public void render() {
-		ScreenUtils.clear(0, 0, 1, 1);
+		ScreenUtils.clear(0, 0, 1, 1);  // Clear the screen with a blue color
 		batch.begin();
 
 		mousePos = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
@@ -85,12 +81,20 @@ public class Game extends ApplicationAdapter {
 				break;
 			case GAME_STATE:
 				float deltaTime = Gdx.graphics.getDeltaTime();
+
+				// Update the player and camera position
 				player.update(deltaTime);
 				camera.position.set(player.getPosition().x, player.getPosition().y, 0);
 				camera.update();
-				tileMap.renderVisibleTiles(camera, batch);
-				player.render(batch);
 
+				// Load chunks dynamically based on the player's position
+				tileMap.loadChunks(camera);
+
+				// Render the visible tiles
+				tileMap.renderVisibleTiles(camera, batch);
+
+				// Render the player
+				player.render(batch);
 				break;
 			case WORLD_CREATE:
 				break;
